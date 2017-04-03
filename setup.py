@@ -9,7 +9,7 @@ from setuptools.dist import Distribution
 
 
 __name__ = "xmlsec"
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 __description__ = "Python bindings for the XML Security Library"
 
 
