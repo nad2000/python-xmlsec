@@ -5,6 +5,7 @@ import os
 from setuptools import setup
 from setuptools import Extension
 from setuptools.command import build_ext
+from setuptools.dist import Distribution
 
 
 __name__ = "xmlsec"
@@ -80,6 +81,9 @@ class BuildExt(build_ext.build_ext):
         add_to_list(ext.define_macros, config.get('define_macros'), {"XMLSEC_CRYPTO"})
         add_to_list(ext.include_dirs, lxml.get_include())
 
+class BinaryDistribution(Distribution):
+    def is_pure(self):
+        return False
 
 _xmlsec = Extension(
     __name__,
@@ -118,6 +122,10 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Topic :: Text Processing :: Markup :: XML'
     ],
+    include_package_data=True,
+    distclass=BinaryDistribution,
 )
